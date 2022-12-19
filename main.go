@@ -44,6 +44,7 @@ func (l *lywtf) isBlockedRequest(c *gin.Context) bool {
 }
 
 func (l *lywtf) getRoot(c *gin.Context) {
+	log.Printf("request from %s, headers: %+v", c.ClientIP(), c.Request.Header)
 	if l.isBlockedRequest(c) {
 		for header := range l.ForbiddenHeaders {
 			c.Header(header, l.ForbiddenHeaders[header])
